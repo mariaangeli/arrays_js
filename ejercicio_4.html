@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Números Pares</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    label {
+        display: block;
+        margin-bottom: 10px;
+    }
+    input[type="text"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+    }
+    button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+    button:hover {
+        background-color: #45a049;
+    }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Números Pares</h2>
+    <label for="numerosInput">Ingrese un conjunto de números separados por comas:</label>
+    <input type="text" id="numerosInput" placeholder="Ejemplo: 1, 2, 3, 4, 5">
+
+    <button onclick="mostrarPares()">Pares</button>
+
+    <div id="tablaContainer"></div>
+</div>
+
+<script>
+function mostrarPares() {
+    const numerosInput = document.getElementById('numerosInput').value;
+    const numeros = numerosInput.split(',').map(numero => parseInt(numero.trim()));
+
+    const numerosPares = numeros.filter(numero => numero % 2 === 0);
+
+    const tablaCompleta = crearTabla('Tabla Completa', numeros);
+    const tablaPares = crearTabla('Tabla de Números Pares', numerosPares);
+
+    document.getElementById('tablaContainer').innerHTML = tablaCompleta + tablaPares;
+}
+
+function crearTabla(titulo, numeros) {
+    let tablaHTML = `<h3>${titulo}</h3>`;
+    tablaHTML += '<table>';
+    tablaHTML += '<tr><th>Número</th></tr>';
+    numeros.forEach(numero => {
+        tablaHTML += `<tr><td>${numero}</td></tr>`;
+    });
+    tablaHTML += '</table>';
+    return tablaHTML;
+}
+</script>
+
+</body>
+</html>

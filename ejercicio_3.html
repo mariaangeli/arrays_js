@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manejo de Array</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    .container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    label {
+        display: block;
+        margin-bottom: 10px;
+    }
+    input[type="text"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+    }
+    button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+    button:hover {
+        background-color: #45a049;
+    }
+    #arrayContent {
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Manejo de Array</h2>
+    <label for="elementoInput">Nuevo Elemento:</label>
+    <input type="text" id="elementoInput" placeholder="Ingrese un elemento">
+
+    <button onclick="agregarElemento()">Agregar Elemento</button>
+    <button onclick="eliminarUltimoElemento()">Eliminar Último Elemento</button>
+
+    <div id="arrayContent"></div>
+</div>
+
+<script>
+let array = [];
+
+function mostrarArray() {
+    const arrayContentDiv = document.getElementById('arrayContent');
+    arrayContentDiv.textContent = 'Array: ' + JSON.stringify(array);
+}
+
+function agregarElemento() {
+    const nuevoElemento = document.getElementById('elementoInput').value;
+    array.push(nuevoElemento);
+    mostrarArray();
+}
+
+function eliminarUltimoElemento() {
+    if (array.length > 0) {
+        array.pop();
+        mostrarArray();
+    } else {
+        alert('El array está vacío, no hay elementos para eliminar.');
+    }
+}
+</script>
+
+</body>
+</html>

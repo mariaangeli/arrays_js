@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de Estadísticas</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    .container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    label {
+        display: block;
+        margin-bottom: 10px;
+    }
+    input[type="text"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+    }
+    button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #45a049;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Calculadora de Estadísticas</h2>
+    <label for="numerosInput">Ingresa la lista de números separados por coma:</label>
+    <input type="text" id="numerosInput" placeholder="Ejemplo: 1, 2, 3, 4">
+    <button onclick="calcularEstadisticas()">Calcular</button>
+
+    <div id="resultados"></div>
+</div>
+
+<script>
+function calcularEstadisticas() {
+    const numerosInput = document.getElementById('numerosInput').value;
+    const numeros = numerosInput.split(',').map(numero => parseFloat(numero.trim()));
+
+    const suma = numeros.reduce((total, numero) => total + numero, 0);
+    const mayor = Math.max(...numeros);
+    const menor = Math.min(...numeros);
+    const media = suma / numeros.length;
+
+    const resultadosDiv = document.getElementById('resultados');
+    resultadosDiv.innerHTML = `
+        <p>Suma: ${suma}</p>
+        <p>Mayor: ${mayor}</p>
+        <p>Menor: ${menor}</p>
+        <p>Media: ${media.toFixed(2)}</p>
+    `;
+}
+</script>
+
+</body>
+</html>
